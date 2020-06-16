@@ -1,1 +1,68 @@
-
+.up-container {
+  background-color:#7dd9e8;
+}
+.nav-items li a {
+  text-decoration: none;
+  color: #333;
+}
+.nav-items #Set {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.up-right-contents h4 {
+  text-align: right;
+}
+.down-container {
+  background-color:#f5f5f5;;
+}
+.hov a:hover {
+  background-color: white;
+}
+.left-side-menu li:hover {
+  background-color: white;
+}
+/* .left-side-menu li:last-child {
+  border: none;
+} */
+.left-side-menu li a {
+  text-decoration: none;
+  color: black;
+}
+.left-side-menu li a:hover {
+  color: coral;
+}
+.recent {
+  background-color: mediumturquoise;
+}
+.right-side-menu li:hover {
+  background-color: white;
+}
+.right-side-menu li:last-child {
+  border: none;
+}
+.right-side-menu li a {
+  text-decoration: none;
+  color: black;
+}
+.right-side-menu li a:hover {
+  color: coral;
+}
+.right-side-menu li:first-child {
+  background-color: mediumturquoise;
+}
+.post-list li a {
+  text-decoration: none;
+  color: aqua;
+}
+.suscribed {
+  color: green;
+}
+.blue {
+  color: aqua;
+}
+.red {
+  color: red;
+}
+.bottom-container{
+  background-color: grey;
+}
