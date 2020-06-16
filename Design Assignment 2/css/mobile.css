@@ -1,0 +1,136 @@
+.header-contents {
+    margin: 0px auto;
+    width: 1002px;
+  }
+  .header-left {
+    float: left;
+    /* margin-top: 13px;
+    margin-left: 33px; */
+  }
+  .logo {
+    float: left;
+    padding-top: 13px;
+    padding-bottom: 10px;
+    /* border: 1px solid black; */
+  }
+  .search {
+    float: right;
+    padding-top: 23px;
+    padding-left: 18px;
+  }
+  .search #search-text-field {
+    font-size: 11px;
+    width: 250px;
+  }
+  
+  .header-right {
+    float: right;
+    padding-top: 14px;
+  }
+  .ham {
+    display: none;
+  }
+  .top-nav {
+    list-style: none;
+  }
+  .top-nav li,
+  #name {
+    float: right;
+  }
+  
+  .top-nav li {
+    padding-top: 4px;
+  }
+  .top-nav li a {
+    text-decoration: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #000;
+  }
+  .top-nav li a:hover {
+    color: #fff;
+  }
+  
+  #settings {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+  
+  .second-header-contents {
+    margin: 0px auto;
+    width: 1002px;
+  }
+  .left-nav {
+    float: left;
+  }
+  
+  .left-nav li {
+    /* border: 1px solid black; */
+    float: left;
+  }
+  .second-navbar {
+    list-style: none;
+  }
+  .left-nav li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 18px 13px;
+    font-size: 15px;
+  }
+  .left-nav li a:hover {
+    background: white;
+  }
+  
+  .right-nav {
+    float: right;
+  }
+  .second-navbar-right {
+    list-style: none;
+  }
+  .second-navbar-right li {
+    float: right;
+  }
+  .second-navbar-right li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 18px 2px 18px 13px;
+    font-size: 13px;
+  }
+  .second-navbar-right li a:hover {
+    background: white;
+  }
+  
+  .bottom-contents {
+    margin: 0px auto;
+    width: 1002px;
+    /* border: 1px solid salmon; */
+  }
+  .bottom-nav {
+    float: left;
+  }
+  .navbar {
+    list-style: none;
+  }
+  .navbar li {
+    float: left;
+    /* border: 1px solid black; */
+  }
+  .navbar li a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 18px 13px;
+    font-size: 13px;
+  }
+  .navbar li a:hover {
+    color: royalblue;
+  }
+  .copyright {
+    /* border: 1px solid black; */
+    float: right;
+    padding: 18px 0px;
+    font-size: 13px;
+  }
+  
