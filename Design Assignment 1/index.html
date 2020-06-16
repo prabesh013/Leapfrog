@@ -1,68 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuTangle Design</title>
-     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/layout.css">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
     <div class="main-container">
-        <div class="top-container">
-
-            <div class="top-first-container clearfix">
-                     <div class="top-first-contents-left">
-                        <div class="logo">
-                        <img src="./images/tutangle.png" alt="TuTangles-logo">
-                        </div>
-                        <div class="search">
-                            <form>
-                                <input id="search-input" type="text" value="Search By Term, Member, or Entry Title">
-                                <input type="submit" value="SEARCH">
-                            </form>
-                        </div>
-
-                    </div>
-
-                    <div class="top-first-contents-right">
-                        <p id="name">Joe Burros</p>
-                        <ul>
-                            <li class="nav-items">Home</li>
-                            <li class="nav-items">Settings</li>
-                            <li class="nav-items">Log Out</li>
-                        </ul>
-                    </div>       
+      <div class="top-container">
+        <div class="up-container">
+          <div class="up-contents clearfix">
+            <div class="up-left-contents clearfix">
+              <div class="logo">
+                <img src="./images/logo.png" alt="logo" />
+              </div>
+              <div class="search">
+                <form action="#">
+                  <input
+                    type="text"
+                    name="search"
+                    value="Search By Term, Member, or Entry Title"
+                  />
+                  <input type="Submit" name="SEARCH" />
+                </form>
+              </div>
             </div>
-
-            <div class="top-second-container clearfix">
-                    <div class="top-second-contents-left">
-                        <ul>
-                            <li class="nav-items">Create New Entry</li>
-                            <li class="nav-items">My Topic Boxes</li>
-                            <li class="nav-items">Friends</li>
-                            <li class="nav-items">Invite New Member</li>
-                        </ul>
-                    </div>
-                    <div class="top-second-contents-right">
-                        <ul>
-                            <li class="nav-items">Topic Boxes Invites - 2</li>
-                            <li class="nav-items">Friends Request - 0</li>
-                        </ul>
-                    </div>
+            <div class="up-right-contents">
+              <h4>Joe Burros</h4>
+              <ul class="nav-items">
+                <li><a href="#">Home</a></li>
+                <li id="Set"><a href="#">Settings</a></li>
+                <li><a href="#">Log Out</a></li>
+              </ul>
             </div>
-            
-    </div>
-    <div class="bottom-container">
+          </div>
+        </div>
+        <div class="down-container">
+          <div class="down-contents clearfix">
+            <div class="down-left">
+              <ul class="nav-items">
+                <li class="hov"><a href="#">Create New Entry</a></li>
+                <li class="hov"><a href="#">My Topic Boxes</a></li>
+                <li class="hov"><a href="#">Friends</a></li>
+                <li class="hov"><a href="#">Invite New Member</a></li>
+              </ul>
+            </div>
+            <div class="down-right">
+              <ul class="nav-items">
+                <li class="hov"><a href="#">Topic Boxes Invite - 2</a></li>
+                <li class="hov"><a href="#">Friend Request - 0</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="middle-container">
+        <div class="middle-contents clearfix">
+          <div class="middle-contents-left clearfix">
+            <div class="mcl-left">
+              <ul class="left-side-menu">
+                <li class="recent"><a href="#">Recent Searches</a></li>
+                <li><a href="#">Nick Cave and the Bad Seeds</a></li>
+                <li><a href="#">African Animals</a></li>
+                <li class="recent"><a href="#">Recent Searches</a></li>
+                <li>
+                  <a href="#"
+                    >Different versions of the Tristan Und Isolde Prelude</a
+                  >
+                </li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Guitar</a></li>
+                <li><a href="#">Bob Cohen</a></li>
+                <li><a href="#">Mark Schnack</a></li>
+                <li><a href="#">Jefferson Dickey</a></li>
+              </ul>
+            </div>
+            <div class="mcl-right">
+              <h3>Entries</h3>
+              <div class="bottom clearfix">
+                <ul class="post-list">
+                  <li>
+                    <div class="post clearfix">
+                      <img
+                        class="code-img"
+                        src="./images/user1.png"
+                        alt="user1"
+                      />
+                      <div class="post-detail">
+                        <h4>
+                          Day for Night Francois Truffaut, a ground breaking
+                          film
+                        </h4>
+                        <p>
+                          by <span class="user"><a href="#">Alan Coe</a></span>
+                          <span class="date">February 10, 2012</span>
+                          <span class="suscribed">Suscribed</span>
+                        </p>
+                        <p>
+                          From Topic Box:<span
+                            ><a href=""> My Favorite Movies</a></span
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="post clearfix">
+                      <img
+                        class="code-img"
+                        src="./images/user2.png"
+                        alt="user2"
+                      />
+                      <div class="post-detail">
+                        <h5 class="blue">NEW ENTRY!</h5>
+                        <h4>Blade Runner, The Director's Cut</h4>
+                        <p>
+                          by
+                          <span class="user"><a href="#">Mary Pilot</a></span>
+                          <span class="date">February 8, 2012</span>
+                        </p>
+                        <p>
+                          From Topic Box:<span
+                            ><a href=""> Behind the Scene</a></span
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="post clearfix">
+                      <img
+                        class="code-img"
+                        src="./images/user3.png"
+                        alt="user3"
+                      />
+                      <div class="post-detail">
+                        <h5 class="blue">NEW COMMENT!</h5>
+                        <h4>The Best French Restaurant in Chicago?</h4>
+                        <p>
+                          by <span class="user"><a href="#">Jim Roy</a></span>
+                          <span class="date">February 7, 2012</span>
+                        </p>
+                        <p>
+                          From Topic Box:<span
+                            ><a href=""> Chicago Restaurant Reviews</a></span
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="post clearfix">
+                      <img
+                        class="code-img"
+                        src="./images/user4.png"
+                        alt="user4"
+                      />
+                      <div class="post-detail">
+                        <h4>
+                          The Meaning of Night. Dark Book but incredibly well
+                          written
+                        </h4>
+                        <p>
+                          by
+                          <span class="user"
+                            ><a href="#">John-Peter Moise</a></span
+                          >
+                          <span class="date">February 7, 2012</span>
+                          <span class="suscribed">Suscribed</span>
+                        </p>
+                        <p>
+                          From Topic Box:<span
+                            ><a href=""> Books Read & Books to Read</a></span
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="post clearfix">
+                      <img
+                        class="code-img"
+                        src="./images/user5.png"
+                        alt="user5"
+                      />
+                      <div class="post-detail">
+                        <h5 class="red">TOPIC BOX INVITE!</h5>
+                        <h4>Pea Pesto</h4>
+                        <p>
+                          by
+                          <span class="user"><a href="#">Marianne Gig</a></span>
+                          <span class="date">February 6, 2012</span>
+                        </p>
+                        <p>
+                          From Topic Box:<span
+                            ><a href=""> Favorite Recipes</a></span
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="middle-contents-right">
+            <ul class="right-side-menu">
+              <li><a href="#">Video Tutorials</a></li>
+              <li><a href="#">Overview of TuTangle</a></li>
+              <li><a href="#">Searching the Site</a></li>
+              <li><a href="#">Previous & Saved Searches</a></li>
+              <li><a href="#">The Topic Box Page</a></li>
+              <li><a href="#">Creating a Topic Box</a></li>
+              <li><a href="#">View Topic Box Entries</a></li>
+              <li><a href="#">Creating an Entry</a></li>
+              <li><a href="#">Privacy Settings</a></li>
+              <li><a href="#">Co-Authoring</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-container">
         <div class="bottom-content clearfix">
             <div class="bottom-left-content">
-                <ul>
-                    <li class="nav-items bottom-list">About Us</li>
-                    <li class="nav-items bottom-list">Contact Us</li>
-                    <li class="nav-items bottom-list">Term of Use</li>
-                    <li class="nav-items bottom-list">Privacy Policy</li>
-                    <li class="nav-items bottom-list">Feedback</li>
+                <ul class="nav-items">
+                    <li class="bottom-list">About Us</li>
+                    <li class="bottom-list">Contact Us</li>
+                    <li class="bottom-list">Term of Use</li>
+                    <li class="bottom-list">Privacy Policy</li>
+                    <li class="bottom-list">Feedback</li>
                 </ul>
             </div>
             <div class="bottom-right-content">
@@ -70,6 +240,5 @@
             </div>
         </div>
     </div>
-</div>
-</body>
+  </body>
 </html>
