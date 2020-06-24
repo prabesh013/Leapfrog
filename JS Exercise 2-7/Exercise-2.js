@@ -12,4 +12,4 @@ function pattern(num) {
 }
 
 var userInput = prompt();
-pattern(userInput);
+pattern(Number(userInput));
