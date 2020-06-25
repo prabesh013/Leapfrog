@@ -14,11 +14,21 @@ var input = {
   },
 };
 
-function normalize(i) {
-  arr = [];
-  obj = {};
-  len = i.length;
-  for (var i = 0; i < len; i++) {}
+function normalize(inp) {
+  op = {};
+  keys = Object.keys(inp);
+  len = keys.length;
+  for (var i = 0; i < len; i++) {
+    data = inp[keys[i]];
+    if (true) {
+      //noechildren
+      op[]
+    }
+    else{
+
+    }
+  }
+  return op;
 }
 
 var output = normalize(input);
