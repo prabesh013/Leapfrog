@@ -33,6 +33,15 @@ var last = len - 1;
 
 // arrowLeft = document.querySelector("#btn-left");
 // arrowRight = document.querySelector("#btn-right");
+function checkCurrent(c) {
+  if (c === -1) {
+    return last;
+  } else if (c === len) {
+    return first;
+  } else {
+    return c;
+  }
+}
 
 arrowLeft.addEventListener("click", slideLeft);
 arrowRight.addEventListener("click", slideRight);
@@ -40,16 +49,18 @@ arrowRight.addEventListener("click", slideRight);
 function slideLeft() {
   //   console.log("left");
   current--;
+  current = checkCurrent(current);
   console.log(current);
-  wrapper.style.left = images[0].width * current + "px";
+  wrapper.style.left = images[0].width * -current + "px";
   //   wrapper.style.marginLeft = -images[0].width;
   //   wrapper.style.marginRight = -images[0].width;
 }
 function slideRight() {
   //   console.log("right");
   current++;
+  current = checkCurrent(current);
   console.log(current);
-  wrapper.style.left = images[0].width * current + "px";
+  wrapper.style.left = images[0].width * -current + "px";
   //   wrapper.style.marginRight = images[0].width;
   //   wrapper.style.marginLeft = -images[0].width;
 }
