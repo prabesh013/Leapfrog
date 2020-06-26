@@ -52,6 +52,7 @@ function slideLeft() {
   current = checkCurrent(current);
   console.log(current);
   wrapper.style.left = images[0].width * -current + "px";
+
   //   wrapper.style.marginLeft = -images[0].width;
   //   wrapper.style.marginRight = -images[0].width;
 }
