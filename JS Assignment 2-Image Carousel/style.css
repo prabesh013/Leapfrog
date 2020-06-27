@@ -15,6 +15,7 @@ body {
   margin: 10px auto;
   height: 650px;
   width: 1100px;
+  /* border: 10px solid red; */
   /* height: 200px;
   width: 200px; */
   overflow: hidden;
@@ -23,6 +24,7 @@ body {
 
 .carousel-image-wrapper {
   position: absolute;
+  left: 0;
 }
 .arrow {
   cursor: pointer;
