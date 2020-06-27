@@ -7,12 +7,12 @@ body {
   width: 500px;
   height: 500px;
   position: relative;
-  overflow: hidden;
 }
 .ball {
-  height: 30px;
-  width: 30px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
   background-color: blue;
   position: absolute;
+  left: 45.83%;
 }

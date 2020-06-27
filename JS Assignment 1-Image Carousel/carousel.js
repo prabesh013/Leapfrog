@@ -14,7 +14,7 @@ wrapper.classList.add("clearfix");
 
 var images = document.querySelectorAll("img");
 len = images.length;
-// wrapper.style.width = len * images[0].width;
+wrapper.style.width = len * images[0].width + "px";
 
 // var container = document.querySelector(".carousel-container");
 //inserting the buttons
@@ -51,7 +51,14 @@ function slideLeft() {
   current--;
   current = checkCurrent(current);
   console.log(current);
+
+  // var timer = setInterval(function () {
+
   wrapper.style.left = images[0].width * -current + "px";
+  //   if (wrapper.style.left === images[0].width) {
+  //     clearInterval(timer);
+  //   }
+  // }, 20);
 
   //   wrapper.style.marginLeft = -images[0].width;
   //   wrapper.style.marginRight = -images[0].width;
