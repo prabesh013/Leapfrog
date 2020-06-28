@@ -1,5 +1,5 @@
 .carousel-container {
-  margin: 10px auto;
+  /* margin: 10px auto; */
   height: 426px;
   width: 640px;
   overflow: hidden;
@@ -27,9 +27,10 @@
   cursor: pointer; /*making clickable*/
 }
 .indicator {
-  margin-top: 10px;
+  position: absolute;
   text-align: center;
   width: 100%;
+  bottom: 0px;
 }
 
 .arrow {
