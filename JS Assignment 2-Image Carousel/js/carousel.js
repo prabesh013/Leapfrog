@@ -1,5 +1,6 @@
 var container = document.querySelector(".carousel-container");
 container.style.display = "none";
+
 function carousel() {
   //inserting clearfix
   container.style.display = "block";
