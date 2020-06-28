@@ -14,15 +14,16 @@ ball.style.top = "0px";
 
 // console.log(container.offsetHeight);
 setInterval(function () {
-  var top = parseInt(ball.style.top);
+  // var top = parseInt(ball.style.top);
   var p = 0;
-  if (touchingTop(top) && !touchingBottom(top)) {
-    p = 10;
-  } else if (touchingBottom(top) && !touchingTop(top)) {
-    p = -10;
-  }
+  // if (touchingTop(top) && !touchingBottom(top)) {
+  //   p = 10;
+  // } else if (touchingBottom(top) && !touchingTop(top)) {
+  //   p = -10;
+  // }
 
-  ball.style.top = top + p + "px";
+  ball.style.top = p + "px";
+  p = p + 10;
 }, 20);
 
 function touchingTop(t) {
