@@ -28,6 +28,7 @@ arrowRight.id = "arrow-right";
 wrapper.insertAdjacentElement("beforebegin", arrowLeft);
 wrapper.insertAdjacentElement("beforebegin", arrowRight);
 
+var list = document.querySelectorAll("li");
 var current = 0;
 var first = 0;
 var last = len - 1;
@@ -67,18 +68,23 @@ arrowRight.addEventListener("dblclick", function () {
   return;
 });
 
-// var currentLeft = parseInt(wrapper.style.left);
+// var transtion = setInterval(function () {
+//   slideRight();
+// }, 3000);
+
 var currentLeft = -images[0].width;
 wrapper.style.left = currentLeft + "px";
 
 function slideRight() {
   current++;
+
   if (current === len) {
     current = 0;
     wrapper.style.left = 0 + "px";
     currentLeft = 0;
   }
   var left = currentLeft;
+
   var timer = setInterval(function () {
     left = left - 10;
     wrapper.style.left = left + "px";
@@ -92,6 +98,7 @@ function slideRight() {
 
 function slideLeft() {
   current--;
+
   if (current === -1) {
     current = len - 1;
     wrapper.style.left = images[0].width * -(current + 2) + "px";
