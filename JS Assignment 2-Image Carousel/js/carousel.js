@@ -3,7 +3,7 @@ var containerTwo = document.querySelector("#container_two");
 var containerThree = document.querySelector("#container_three");
 var containerFour = document.querySelector("#container_four");
 
-function Carousel(container, ho = 1000, tr = 0) {
+function Carousel(container, ho, tr = 0) {
   var self = this;
   this.ho = ho;
   this.container = container;
