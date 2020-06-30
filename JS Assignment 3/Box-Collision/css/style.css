@@ -2,18 +2,15 @@ body {
   background-color: bisque;
 }
 .main-area {
-  width: 650px;
-  height: 650px;
   margin: 30px auto;
   background-color: aliceblue;
   position: relative;
   overflow: hidden;
-  padding: 10px;
 }
 
 .box {
   /* height: 20px;
   width: 20px; */
-  border-radius: 50%;
+  /* border-radius: 50%; */
   position: absolute;
 }
