@@ -34,6 +34,9 @@ function ball() {
       counter++;
       self.divSmall.removeChild(self.img);
       mainArea.removeChild(self.divSmall);
+      if (counter === 20) {
+        alert("YOU WON!!!");
+      }
     });
 
     this.dx = directionValue[Math.floor(Math.random() * directionValue.length)];
