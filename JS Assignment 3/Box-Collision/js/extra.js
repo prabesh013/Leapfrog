@@ -1,41 +1,4 @@
-var b2 = new ball();
-setInterval(b2.move, 1000 / 60);
-var b3 = new ball();
-setInterval(b3.move, 1000 / 60);
-var b4 = new ball();
-setInterval(b4.move, 1000 / 60);
-var b5 = new ball();
-setInterval(b5.move, 1000 / 60);
-var b6 = new ball();
-setInterval(b6.move, 1000 / 60);
-var b7 = new ball();
-setInterval(b7.move, 1000 / 60);
-var b8 = new ball();
-setInterval(b8.move, 1000 / 60);
-var b9 = new ball();
-setInterval(b9.move, 1000 / 60);
-var b10 = new ball();
-setInterval(b10.move, 1000 / 60);
-var b11 = new ball();
-setInterval(b11.move, 1000 / 60);
-var b12 = new ball();
-setInterval(b12.move, 1000 / 60);
-var b13 = new ball();
-setInterval(b13.move, 1000 / 60);
-var b14 = new ball();
-setInterval(b14.move, 1000 / 60);
-var b15 = new ball();
-setInterval(b15.move, 1000 / 60);
-var b16 = new ball();
-setInterval(b16.move, 1000 / 60);
-var b17 = new ball();
-setInterval(b17.move, 1000 / 60);
-var b18 = new ball();
-setInterval(b18.move, 1000 / 60);
-var b19 = new ball();
-setInterval(b19.move, 1000 / 60);
-var b20 = new ball();
-setInterval(b20.move, 1000 / 60);
+//some unused codes
 
 let check = false;
 let circle1 = {

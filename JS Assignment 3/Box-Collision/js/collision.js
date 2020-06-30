@@ -14,7 +14,7 @@ var min = 0;
 var max = colors.length;
 var directionValue = [-1, 1]; //directions
 var movement = [3, 3]; //speed
-// var hw = [20, 25, 30, 35]; //heightwidth array for the circles
+var hw = [20, 25, 30, 35]; //heightwidth array for the circles
 let circles = [];
 
 function ball() {
@@ -22,8 +22,7 @@ function ball() {
   this.create = function () {
     this.divSmall = document.createElement("div");
     this.divSmall.setAttribute("class", "box");
-    // this.heightWidth = hw[Math.floor(Math.random() * hw.length)];
-    this.heightWidth = 50;
+    this.heightWidth = hw[Math.floor(Math.random() * hw.length)];
 
     this.divSmall.style.height = this.heightWidth + "px";
     this.divSmall.style.width = this.heightWidth + "px";
@@ -45,8 +44,6 @@ function ball() {
     circles.push(this.divSmall);
   };
 
-  //   this.touching = function (circle) {};
-
   this.move = function () {
     //border collision detection
     if (
@@ -67,14 +64,20 @@ function ball() {
     self.divSmall.style.top = self.y + "px";
     self.divSmall.style.left = self.x + "px";
 
+    //collision with others
     for (let i = 0; i < circles.length; i++) {
-      if (circles[i] === self) continue;
-      let rect1 = { x: self.x, y: self.y, width: 50, height: 50 };
+      if (circles[i] === self.divSmall) continue;
+      let rect1 = {
+        x: self.x,
+        y: self.y,
+        width: self.heightWidth,
+        height: self.heightWidth,
+      };
       let rect2 = {
         x: parseInt(circles[i].style.left),
         y: parseInt(circles[i].style.top),
-        width: 50,
-        height: 50,
+        width: parseInt(circles[i].style.width),
+        height: parseInt(circles[i].style.height),
       };
 
       if (
