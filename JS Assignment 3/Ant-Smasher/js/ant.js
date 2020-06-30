@@ -1,3 +1,4 @@
+body = document.querySelector("body");
 mainArea = document.querySelector(".main-area");
 mainArea.style.height = 650 + "px";
 mainArea.style.width = 650 + "px";
@@ -13,7 +14,7 @@ function ball() {
     this.divSmall = document.createElement("div");
     this.divSmall.setAttribute("class", "box");
 
-    this.heightWidth = 35;
+    this.heightWidth = 30;
 
     this.divSmall.style.height = this.heightWidth + "px";
     this.divSmall.style.width = this.heightWidth + "px";
@@ -67,20 +68,40 @@ function ball() {
 
     self.divSmall.style.top = self.y + "px";
     self.divSmall.style.left = self.x + "px";
-  };
-  function check() {
-    var rect1 = { x: self.x, y: self.y, width: 35, height: 35 };
-    var rect2 = { x: 20, y: 10, width: 10, height: 10 };
 
-    if (
-      rect1.x < rect2.x + rect2.width &&
-      rect1.x + rect1.width > rect2.x &&
-      rect1.y < rect2.y + rect2.height &&
-      rect1.y + rect1.height > rect2.y
-    ) {
-      // collision detected!
+    //collision with others
+    for (let i = 0; i < circles.length; i++) {
+      if (circles[i] === self.divSmall) continue;
+      let rect1 = {
+        x: self.x,
+        y: self.y,
+        width: self.heightWidth,
+        height: self.heightWidth,
+      };
+      let rect2 = {
+        x: parseInt(circles[i].style.left),
+        y: parseInt(circles[i].style.top),
+        width: parseInt(circles[i].style.width),
+        height: parseInt(circles[i].style.height),
+      };
+
+      if (
+        rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.y + rect1.height > rect2.y
+      ) {
+        self.dx = -self.dx;
+        self.dy = -self.dy;
+        self.x += self.dx * self.speedX;
+        self.y += self.dy * self.speedY;
+
+        self.divSmall.style.top = self.y + "px";
+        self.divSmall.style.left = self.x + "px";
+      }
     }
-  }
+    body.querySelector(".count").querySelector("span").innerText = counter;
+  };
 }
 
 var b = [];
