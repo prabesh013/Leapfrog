@@ -12,7 +12,7 @@ var fromTop = ["-90px", "-225px", "-400px"];
 var car = document.createElement("div");
 
 var speedUserCar = 2;
-var speedOppoCar = 1;
+var speedOppoCar = 2;
 
 var rightLane = false;
 var leftLane = false;
@@ -21,7 +21,6 @@ var middleLane = false;
 var opponents = [];
 var score = 0;
 
-var updater = 1;
 var finalScore = document.querySelector("#finalscore");
 
 var NUMBER_OF_INSTANCES = 3;
@@ -49,25 +48,33 @@ var roadImg = document.createElement("img");
 //generates opponent car
 function generateOpponentCar() {
   var self = this;
+  this.updater = 1;
 
-  this.oppoCar = document.createElement("div");
-  this.oppoCar.style.width = "67px";
-  this.oppoCar.style.height = "90px";
-  this.oppoCar.style.background = `url("./img/${chosenOne}")`;
-  this.oppoCar.style.backgroundSize = "cover";
-  this.oppoCar.style.backgroundPosition = "center center";
-  this.oppoCar.style.position = "absolute";
-  this.oppoCar.style.zIndex = 1;
-  this.oppoCar.style.top = fromTop[Math.floor(Math.random() * fromTop.length)];
-  this.oppoCar.style.borderRadius = "5px";
-  this.oppoCar.style.left =
-    fromLeft[Math.floor(Math.random() * fromLeft.length)];
-  gameArea.appendChild(this.oppoCar);
-  opponents.push(this.oppoCar);
+  this.makeOpponentCar = function () {
+    let leftPositionEnemyCar =
+      fromLeft[Math.floor(Math.random() * fromLeft.length)];
+    let topPositionEnemyCar =
+      fromTop[Math.floor(Math.random() * fromTop.length)];
+
+    self.oppoCar = document.createElement("div");
+    self.oppoCar.setAttribute("class", "opponent-car");
+    self.oppoCar.style.width = "67px";
+    self.oppoCar.style.height = "90px";
+    self.oppoCar.style.background = `url("./img/${chosenOne}")`;
+    self.oppoCar.style.backgroundSize = "cover";
+    self.oppoCar.style.backgroundPosition = "center center";
+    self.oppoCar.style.position = "absolute";
+    self.oppoCar.style.zIndex = 1;
+    self.oppoCar.style.top = topPositionEnemyCar;
+    self.oppoCar.style.borderRadius = "5px";
+    self.oppoCar.style.left = leftPositionEnemyCar;
+    gameArea.appendChild(self.oppoCar);
+    opponents.push(self.oppoCar);
+  };
 
   //moving the enemy car
   this.moveOppo = function () {
-    self.updater = self.updater + 1;
+    self.updater++;
     if (self.updater === 1500) {
       self.updater = 0;
       changeSpeed();
@@ -92,7 +99,7 @@ function generateOpponentCar() {
 
       let car1 = {
         x: userCarLeft,
-        y: 620,
+        y: 530,
         width: 67,
         height: 90,
       };
@@ -117,17 +124,24 @@ function generateOpponentCar() {
 }
 
 function clearEverything() {
+  let opponentCars = document.querySelectorAll(".opponent-car");
+
   opponents = [];
   score = 0;
   updater = 1;
   speedUserCar = 2;
-  speedOppoCar = 1;
+  speedOppoCar = 2;
 
   rightLane = false;
   leftLane = false;
   middleLane = false;
   stop = [];
   userCarLeft = 115;
+
+  for (let i = 0; i < opponentCars.length; i++) {
+    console.log(opponentCars[i]);
+    opponentCars[i].parentElement.removeChild(opponentCars[i]);
+  }
 }
 
 function updateSpeed() {
@@ -153,6 +167,7 @@ function startGame() {
 
 function restartGame() {
   clearEverything();
+
   startGame();
 }
 
@@ -201,9 +216,12 @@ function moveCar(e) {
 }
 
 function changeSpeed() {
-  speedUserCar += 1;
-  updateSpeed();
-  speedOppoCar++;
+  if (!(speedUserCar === 5 || speedOppoCar === 5)) {
+    console.log(speedUserCar, speedOppoCar);
+    speedUserCar += 1;
+    updateSpeed();
+    speedOppoCar++;
+  }
 }
 
 function createRoad() {
@@ -246,12 +264,13 @@ function gameEnd() {
   //   clearEverything();
 }
 
-for (let i = 0; i < NUMBER_OF_INSTANCES; i++) {
-  enemyCar[i] = new generateOpponentCar();
-}
-
 function runCars() {
   for (let i = 0; i < NUMBER_OF_INSTANCES; i++) {
-    stop[i] = setInterval(enemyCar[i].moveOppo, 1000 / 60);
+    enemyCar[i] = new generateOpponentCar();
+  }
+  for (let i = 0; i < NUMBER_OF_INSTANCES; i++) {
+    console.log("Runing cars...");
+    enemyCar[i].makeOpponentCar();
+    stop[i] = setInterval(enemyCar[i].moveOppo, 10);
   }
 }
