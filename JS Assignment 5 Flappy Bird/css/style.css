@@ -1,0 +1,75 @@
+.hide {
+  display: none;
+}
+
+.btn {
+  padding: 15px;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+.btn:hover {
+  background-color: chartreuse;
+}
+.startScreen,
+.endScreen {
+  text-align: center;
+  margin-top: 200px;
+}
+.gameScreen {
+  width: 400px;
+  height: 600px;
+  border: 1px solid black;
+  margin: 10px auto;
+  position: relative;
+  overflow: hidden;
+  background-color: skyblue;
+}
+
+.score-area {
+  font-size: 1.5em;
+  background-color: slategray;
+  color: snow;
+  text-align: center;
+  height: 30px;
+}
+.game {
+  height: 570px;
+}
+#background {
+  position: absolute;
+  bottom: 100px;
+  width: 400px;
+  height: 200px;
+  background-image: url(../img/background.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+#frontground {
+  position: absolute;
+  bottom: 0px;
+  width: 400px;
+  height: 100px;
+  background-image: url(../img/frontground.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+#bird {
+  position: absolute;
+  z-index: 10;
+  background-image: url(../img/bird.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 30px;
+  width: 38px;
+  left: 80px;
+}
+
+#obstacleTop {
+  background-image: url(../img/obstacleUp.png);
+}
