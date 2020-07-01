@@ -4,11 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
     <title>Car Lane Game</title>
   </head>
   <body>
+    <div class="container">
+      <div class="startScreen">
+        <h1>Welcome To Car Lane GAME!!!</h1>
+        <button id="start" class="btn">START</button>
+      </div>
+
+      <div class="score-speed">
+        <h2>Score: <span id="score"></span></h2>
+        <h2>Speed: <span id="speed"></span>km/hr</h2>
+      </div>
+      <div class="game">
+        <div class="gameArea"></div>
+      </div>
+      <div class="endScreen">
+        <h1>Sorry You Died</h1>
+        <h2>Score: <span id="finalscore"></span></h2>
+        <button id="restart" class="btn">Restart</button>
+      </div>
+    </div>
     <script src="js/game.js"></script>
   </body>
 </html>
