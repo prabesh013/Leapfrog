@@ -1,0 +1,12 @@
+#canvas {
+  background-color: #043a4a;
+  display: block;
+}
+
+.helix_animation {
+  background-color: #043a4a;
+  display: block;
+  margin: auto;
+  height: 600px;
+  width: 600px;
+}
