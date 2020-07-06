@@ -274,3 +274,14 @@ function runCars() {
     stop[i] = setInterval(enemyCar[i].moveOppo, 10);
   }
 }
+
+//moving obstacles
+function moveObstacles(oT, oB) {
+  var left = parseInt(oT.style.left);
+  oT.style.left = left - obstacleSpeed + "px";
+  oB.style.left = left - obstacleSpeed + "px";
+  var l = parseInt(oT.style.left);
+  if (l < 0) {
+    return true;
+  }
+}
