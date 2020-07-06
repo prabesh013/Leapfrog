@@ -24,6 +24,9 @@ let playing = false;
 ctx.fillStyle = "#00000";
 ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
+ctx.strokeStyle = "#ffffff";
+ctx.lineWidth = 7;
+
 ctx.lineJoin = "round";
 
 canvas.addEventListener("mousedown", function (e) {
@@ -37,21 +40,21 @@ canvas.addEventListener("mouseup", function (e) {
 
 canvas.addEventListener("mousemove", function (e) {
   if (playing) {
-    ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 2;
-
     previousX = currentX;
     previousY = currentY;
     currentX = e.clientX - canvas.offsetLeft;
     currentY = e.clientY - canvas.offsetTop;
-
-    ctx.beginPath();
-    ctx.moveTo(previousX, previousY);
-    ctx.lineTo(currentX, currentY);
-    ctx.closePath();
-    ctx.stroke();
+    draw();
   }
 });
+
+function draw() {
+  ctx.beginPath();
+  ctx.moveTo(previousX, previousY);
+  ctx.lineTo(currentX, currentY);
+  ctx.closePath();
+  ctx.stroke();
+}
 
 //generating random number
 function randInt(min, max) {
@@ -69,5 +72,14 @@ let text = document.createTextNode(expression);
 p.appendChild(text);
 expressionArea.appendChild(p);
 
-// const playButton = document.querySelector(".play-btn");
-// playButton.addEventListener("click", function () {});
+const viewImage = document.querySelector(".view-image");
+let image = document.createElement("img");
+const playButton = document.querySelector(".play-btn");
+playButton.addEventListener("click", function () {
+  const dataURL = canvas.toDataURL();
+  image.style.display = "inline-block";
+  image.setAttribute("src", dataURL);
+  image.style.height = "28px";
+  image.style.width = "28px";
+  viewImage.appendChild(image);
+});
