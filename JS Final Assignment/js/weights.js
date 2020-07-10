@@ -1,8 +1,8 @@
-function logic(imageRComponent) {
+function logic(imageOneComponent) {
   // append 1 at begining for coefficient -> new size = 785
   // this is done
   // var imageFromCanvasWithX0 = [1, ...imageFromCanvas];
-  var imageFromCanvasWithX0 = [1, ...imageRComponent];
+  var imageFromCanvasWithX0 = [1, ...imageOneComponent];
 
   // each key 0..9 has array of 785 numbers (weights)
   var weightsMap = {

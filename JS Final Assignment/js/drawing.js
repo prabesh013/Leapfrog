@@ -66,6 +66,10 @@ button.addEventListener("click", function () {
   ctx.fillStyle = "#000000";
   ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
   playing = false;
+  imageDrawingData = null;
+  data = null;
+  imageGrayScaleData = null;
+  newData = null;
 });
 
 //get image Data
@@ -76,6 +80,8 @@ imgDataButton.addEventListener("click", function () {
   imageDrawingData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   console.log(imageDrawingData);
   data = imageDrawingData.data;
+  imageOneComponent = [];
+  reshapeImage = [];
 });
 
 let grayscalebtn = document.querySelector(".grayscalebtn");
@@ -88,15 +94,13 @@ let outputCtx = outputCanvas.getContext("2d");
 outputCanvas.width = canvas.width;
 outputCanvas.height = canvas.height;
 
+let imageGrayScaleData = null;
+let newData = null;
+
 function grayscale() {
-  let outputCanvas = document.createElement("CANVAS");
-  let outputCtx = outputCanvas.getContext("2d");
-  // outputCanvas.width = imageDrawingData.width;
-  // outputCanvas.height = imageDrawingData.height;
-  outputCanvas.width = canvas.width;
-  outputCanvas.height = canvas.height;
-  let imageGrayScaleData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  let newData = imageGrayScaleData.data;
+  imageGrayScaleData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  newData = imageGrayScaleData.data;
+
   for (let i = 0; i < newData.length; i += 4) {
     // var avg = (newData[i] + newData[i + 1] + newData[i + 2]) / 3;
     let avg = Math.floor(
@@ -108,6 +112,48 @@ function grayscale() {
   }
   outputCtx.putImageData(imageGrayScaleData, 0, 0);
   console.log(imageGrayScaleData);
-  viewImage.appendChild(outputCanvas);
+  // viewImage.appendChild(outputCanvas);
 }
-const THRESHOLD = 128;
+let imageOneComponent = [];
+const blackWhitebtn = document.querySelector(".blackwhitebtn");
+blackWhitebtn.addEventListener("click", blackWhite);
+
+//thresholding
+//increasing contrast
+
+// The conversion of a gray scale image into black or white, so called binary image is called binarization
+// The simplest way of binarization is thresholding;
+const threshold = 150;
+
+function blackWhite() {
+  console.log("hi");
+  let counter = 0;
+  for (var i = 0; i < newData.length; i += 4) {
+    if (newData[i] > threshold) {
+      imageOneComponent[counter] = 255;
+    } else {
+      imageOneComponent[counter] = 0;
+    }
+    counter++;
+  }
+  console.log(imageOneComponent);
+  console.log(imageOneComponent.length);
+}
+
+let reshapebtn = document.querySelector(".reshapebtn");
+reshapebtn.addEventListener("click", reshape);
+
+let reshapeImage = [];
+const imageSIZE = 420;
+function reshape() {
+  let offset = 0;
+  for (let i = 0; i < imageSIZE; i++) {
+    let oneRow = [];
+    for (let j = 0; j < imageSIZE; j++) {
+      oneRow.push(imageOneComponent[offset + j]);
+    }
+    reshapeImage.push(oneRow);
+    offset = offset + imageSIZE;
+  }
+  console.log(reshapeImage);
+}
