@@ -2,7 +2,8 @@
   width: 1000px;
   height: 600px;
   margin: auto;
-  background-color: rosybrown;
+  /* background-color: rosybrown; */
+  background-color: #84a9ac;
   padding: 20px 10px;
 }
 .expression {

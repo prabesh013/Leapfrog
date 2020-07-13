@@ -7890,8 +7890,9 @@ function logic(imageOneComponent) {
     }
     values.push(val);
   }
-  // console.log(values);
+  console.log(values);
 
   // Class is that with highest number
-  console.log("Class Predicted: ", values.indexOf(Math.max(...values)));
+  // console.log("Class Predicted: ", values.indexOf(Math.max(...values)));
+  return values.indexOf(Math.max(...values));
 }
