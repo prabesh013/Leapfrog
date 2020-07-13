@@ -24,8 +24,8 @@ let playing = false;
 //basic styling for canvas
 ctx.fillStyle = "#000000";
 ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-ctx.strokeStyle = "#ffffff";
-ctx.lineWidth = 10;
+ctx.strokeStyle = "#99ff99";
+ctx.lineWidth = 5;
 ctx.lineJoin = "round";
 
 //only when mouse is clicked in the canvas get current positions and drawing starts
@@ -82,9 +82,6 @@ imgDataButton.addEventListener("click", function () {
   data = imageDrawingData.data;
   imageOneComponent = [];
   reshapeImage = [];
-  horizontal_sum = [];
-  leftArray = [];
-  rightArray = [];
 });
 
 let grayscalebtn = document.querySelector(".grayscalebtn");
@@ -92,6 +89,8 @@ grayscalebtn.addEventListener("click", grayscale);
 
 let outputCanvas = document.createElement("CANVAS");
 let outputCtx = outputCanvas.getContext("2d");
+// outputCanvas.width = imageDrawingData.width;
+// outputCanvas.height = imageDrawingData.height;
 outputCanvas.width = canvas.width;
 outputCanvas.height = canvas.height;
 
@@ -115,20 +114,20 @@ function grayscale() {
   console.log(imageGrayScaleData);
   // viewImage.appendChild(outputCanvas);
 }
-
 let imageOneComponent = [];
 const blackWhitebtn = document.querySelector(".blackwhitebtn");
 blackWhitebtn.addEventListener("click", blackWhite);
 
 //thresholding
+//increasing contrast
 
 // The conversion of a gray scale image into black or white, so called binary image is called binarization
 // The simplest way of binarization is thresholding;
-const threshold = 128;
+const threshold = 150;
 
 function blackWhite() {
   let counter = 0;
-  for (let i = 0; i < newData.length; i += 4) {
+  for (var i = 0; i < newData.length; i += 4) {
     if (newData[i] > threshold) {
       imageOneComponent[counter] = 255;
     } else {
@@ -174,6 +173,7 @@ function hsum() {
   console.log(horizontal_sum);
   console.log(horizontal_sum.length);
 }
+
 let leftArray = [];
 let rightArray = [];
 
@@ -196,11 +196,11 @@ function findh() {
   console.log(rightArray);
 }
 
-let cutHbtn = document.querySelector(".cuthbtn");
-cutHbtn.addEventListener("click", cuthorizontal);
+let showImagebtn = document.querySelector(".showImage");
+showImagebtn.addEventListener("click", showImage);
 
 let listOfHorizontalCanvas = [];
-function cuthorizontal() {
+function showImage() {
   let sourceimage = canvas;
   for (let i = 0; i < leftArray.length; i++) {
     let crops = document.createElement("CANVAS");
@@ -212,32 +212,65 @@ function cuthorizontal() {
     crops.width = x;
     crops.height = 210;
     cropsContext.drawImage(sourceimage, leftArray[i], 0, x, 210, 0, 0, x, 210);
-    listOfHorizontalCanvas.push(crops); //important line
-    // viewImage.appendChild(document.createElement("br"));
-    // viewImage.appendChild(crops);
+    listOfHorizontalCanvas.push(crops);
+    viewImage.appendChild(crops);
   }
-  console.log(listOfHorizontalCanvas.length);
-  processingAfterHorizontalSplit();
 }
 
-let horizontalImageOneComponents = [];
-let reshapeHorizontalCuts = [];
+let listOfVerticalCanvas = [];
+let vsumbtn = document.querySelector(".vsumbtn");
+vsumbtn.addEventListener("click", vsum);
 
+let vertical_sum = [];
+function vsum() {
+  for (let i = 0; i < imageHeight; i++) {
+    let sum = 0;
+    for (let j = 0; j < imageWidth; j++) {
+      sum = sum + reshapeImage[i][j];
+    }
+    vertical_sum.push(sum);
+  }
+  console.log(vertical_sum.length);
+}
+
+let topArray = [];
+let bottomArray = [];
+
+let findvbtn = document.querySelector(".findvbtn");
+findvbtn.addEventListener("click", findv);
+function findv() {
+  let top = 0;
+  let bottom = 0;
+  for (let j = 0; j < imageHeight - 1; j++) {
+    if (vertical_sum[j] == 0 && vertical_sum[j + 1] > 0) {
+      top = j + 1;
+      topArray.push(top);
+    }
+    if (vertical_sum[j] > 0 && vertical_sum[j + 1] == 0) {
+      bottom = j;
+      bottomArray.push(bottom);
+    }
+  }
+  console.log(topArray);
+  console.log(bottomArray);
+}
+
+// pdamd
+let horizontalImageOneComponents = [];
+
+let reshapeHorizontalCuts = [];
 function processingAfterHorizontalSplit() {
-  //get horizontally split canvas data
-  //grayscale the data
-  //blackandwhite
-  //reshape
   for (let k = 0; k < listOfHorizontalCanvas.length; k++) {
     let tempCanvas = listOfHorizontalCanvas[k];
     let c = tempCanvas.getContext("2d");
-    let grayScaleDataHorizontal = c.getImageData(
+    grayScaleDataHorizontal = c.getImageData(
       0,
       0,
       tempCanvas.width,
       tempCanvas.height
     );
     let newHorizontalData = grayScaleDataHorizontal.data;
+
     for (let i = 0; i < newHorizontalData.length; i += 4) {
       let avg = Math.floor(
         0.299 * newHorizontalData[i] +
@@ -248,11 +281,11 @@ function processingAfterHorizontalSplit() {
       newHorizontalData[i + 1] = avg; // green
       newHorizontalData[i + 2] = avg; // blue
     }
-    c.putImageData(grayScaleDataHorizontal, 0, 0);
+    c.putImageData(imageGrayScaleData, 0, 0);
 
     let horizontalComponent = [];
     let counter = 0;
-    for (let i = 0; i < newHorizontalData.length; i += 4) {
+    for (var i = 0; i < newHorizontalData.length; i += 4) {
       if (newHorizontalData[i] > threshold) {
         horizontalComponent[counter] = 255;
       } else {
@@ -261,7 +294,6 @@ function processingAfterHorizontalSplit() {
       counter++;
     }
     horizontalImageOneComponents.push(horizontalComponent);
-    console.log(horizontalComponent);
 
     let reshapeHorizontalImage = [];
     let hWidth = rightArray[k] - leftArray[k];
@@ -275,145 +307,29 @@ function processingAfterHorizontalSplit() {
       reshapeHorizontalImage.push(oneHRow);
       offset = offset + hWidth;
     }
-    console.log(reshapeHorizontalImage);
     reshapeHorizontalCuts.push(reshapeHorizontalImage);
   }
-  console.log(reshapeHorizontalCuts);
 }
 
-let listOfVerticalSum = [];
+let listOfVerticalCanvas = [];
 
 let vsumbtn = document.querySelector(".vsumbtn");
 vsumbtn.addEventListener("click", vsum);
 
 function vsum() {
+  processingAfterHorizontalSplit();
   for (let k = 0; k < horizontalImageOneComponents.length; k++) {
     let vertical_sum = [];
     let vWidth = rightArray[k] - leftArray[k];
     let vHeight = 210;
-    for (let i = 0; i < vHeight; i++) {
+    for (let i = 0; i < vWidth; i++) {
       let sum = 0;
       for (let j = 0; j < vWidth; j++) {
         sum = sum + reshapeHorizontalCuts[k][i][j];
       }
       vertical_sum.push(sum);
     }
-    listOfVerticalSum.push(vertical_sum);
+    listOfVerticalCanvas.push(vertical_sum);
   }
-  console.log(listOfVerticalSum);
+  console.log(listOfVerticalCanvas);
 }
-
-let topArray = [];
-let bottomArray = [];
-
-let findvbtn = document.querySelector(".findvbtn");
-findvbtn.addEventListener("click", findv);
-function findv() {
-  for (let k = 0; k < listOfVerticalSum.length; k++) {
-    let top = 0;
-    let bottom = 0;
-    let vertical_sum = listOfVerticalSum[k];
-    for (let j = 0; j < imageHeight - 1; j++) {
-      if (vertical_sum[j] == 0 && vertical_sum[j + 1] > 0) {
-        top = j + 1;
-        topArray.push(top);
-      }
-      if (vertical_sum[j] > 0 && vertical_sum[j + 1] == 0) {
-        bottom = j;
-        bottomArray.push(bottom);
-      }
-    }
-    console.log(topArray);
-    console.log(bottomArray);
-  }
-}
-
-let cutVbtn = document.querySelector(".cutvbtn");
-cutVbtn.addEventListener("click", cutvertical);
-
-let listOfVerticalCanvas = [];
-function cutvertical() {
-  let sourceimage = canvas;
-  for (let i = 0; i < leftArray.length; i++) {
-    let crops = document.createElement("CANVAS");
-    // crops.height = crops.width = 0;
-    let x = rightArray[i] - leftArray[i];
-    let y = bottomArray[i] - topArray[i];
-
-    let cropsContext = crops.getContext("2d");
-    crops.width = x;
-    crops.height = y;
-    cropsContext.drawImage(
-      sourceimage,
-      leftArray[i],
-      topArray[i],
-      x,
-      y,
-      0,
-      0,
-      x,
-      y
-    );
-    listOfVerticalCanvas.push(crops); //important line
-    viewImage.appendChild(document.createElement("br"));
-    viewImage.appendChild(crops);
-    //just checking code
-    let image = document.createElement("img");
-    const dataURL = crops.toDataURL();
-    image.style.display = "inline-block";
-    image.setAttribute("src", dataURL);
-    image.style.height = "20px";
-    image.style.width = "20px";
-    // image.style.padding = "4px";
-    viewImage.appendChild(document.createElement("br"));
-    viewImage.appendChild(image);
-  }
-  console.log(listOfVerticalCanvas.length);
-}
-
-// let rescalebtn = document.querySelector(".rescalebtn");
-// rescalebtn.addEventListener("click", rescale);
-
-const playButton = document.querySelector(".play-btn");
-playButton.addEventListener("click", function () {
-  // function rescale() {
-  //should I put leftArray here?
-  for (let i = 0; i < leftArray.length; i++) {
-    let sourceimage = canvas;
-    let crops = document.createElement("CANVAS");
-    let cropsContext = crops.getContext("2d");
-    let w = rightArray[i] - leftArray[i];
-    let h = bottomArray[i] - topArray[i];
-    if (w > h) {
-      //&& w > 20
-      let scaleFactor = w / 20;
-      w = 20;
-      h = Math.floor(h / scaleFactor);
-      // padding = 20 - h;
-    } else if (h > w) {
-      //&& h > 20
-      let scaleFactor = h / 20;
-      h = 20;
-      w = Math.floor(w / scaleFactor);
-    } else {
-      w = 20;
-      h = 20;
-    }
-    console.log("W: ", w, "H: ", h);
-    crops.width = w;
-    crops.height = h;
-    cropsContext.drawImage(
-      sourceimage,
-      leftArray[i],
-      topArray[i],
-      rightArray[i] - leftArray[i],
-      bottomArray[i] - topArray[i],
-      0,
-      0,
-      w,
-      h
-    );
-    viewImage.appendChild(document.createElement("br"));
-    viewImage.appendChild(crops);
-  }
-});

@@ -33,3 +33,6 @@
 img {
   display: none;
 }
+.view-image {
+  height: 100%;
+}
