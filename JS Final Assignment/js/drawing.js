@@ -25,7 +25,7 @@ let playing = false;
 ctx.fillStyle = "#000000";
 ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 ctx.strokeStyle = "#ffffff";
-ctx.lineWidth = 10;
+ctx.lineWidth = 8;
 ctx.lineJoin = "round";
 
 //only when mouse is clicked in the canvas get current positions and drawing starts
@@ -87,8 +87,8 @@ imgDataButton.addEventListener("click", function () {
   rightArray = [];
 });
 
-let grayscalebtn = document.querySelector(".grayscalebtn");
-grayscalebtn.addEventListener("click", grayscale);
+// let grayscalebtn = document.querySelector(".grayscalebtn");
+// grayscalebtn.addEventListener("click", grayscale);
 
 let outputCanvas = document.createElement("CANVAS");
 let outputCtx = outputCanvas.getContext("2d");
@@ -117,8 +117,8 @@ function grayscale() {
 }
 
 let imageOneComponent = [];
-const blackWhitebtn = document.querySelector(".blackwhitebtn");
-blackWhitebtn.addEventListener("click", blackWhite);
+// const blackWhitebtn = document.querySelector(".blackwhitebtn");
+// blackWhitebtn.addEventListener("click", blackWhite);
 
 //thresholding
 
@@ -140,8 +140,8 @@ function blackWhite() {
   console.log(imageOneComponent.length);
 }
 
-let reshapebtn = document.querySelector(".reshapebtn");
-reshapebtn.addEventListener("click", reshape);
+// let reshapebtn = document.querySelector(".reshapebtn");
+// reshapebtn.addEventListener("click", reshape);
 
 let reshapeImage = [];
 const imageWidth = 420;
@@ -159,8 +159,8 @@ function reshape() {
   console.log(reshapeImage);
 }
 
-let hsumbtn = document.querySelector(".hsumbtn");
-hsumbtn.addEventListener("click", hsum);
+// let hsumbtn = document.querySelector(".hsumbtn");
+// hsumbtn.addEventListener("click", hsum);
 
 let horizontal_sum = [];
 function hsum() {
@@ -177,8 +177,8 @@ function hsum() {
 let leftArray = [];
 let rightArray = [];
 
-let findhbtn = document.querySelector(".findhbtn");
-findhbtn.addEventListener("click", findh);
+// let findhbtn = document.querySelector(".findhbtn");
+// findhbtn.addEventListener("click", findh);
 function findh() {
   let left = 0;
   let right = 0;
@@ -196,8 +196,8 @@ function findh() {
   console.log(rightArray);
 }
 
-let cutHbtn = document.querySelector(".cuthbtn");
-cutHbtn.addEventListener("click", cuthorizontal);
+// let cutHbtn = document.querySelector(".cuthbtn");
+// cutHbtn.addEventListener("click", cuthorizontal);
 
 let listOfHorizontalCanvas = [];
 function cuthorizontal() {
@@ -283,8 +283,8 @@ function processingAfterHorizontalSplit() {
 
 let listOfVerticalSum = [];
 
-let vsumbtn = document.querySelector(".vsumbtn");
-vsumbtn.addEventListener("click", vsum);
+// let vsumbtn = document.querySelector(".vsumbtn");
+// vsumbtn.addEventListener("click", vsum);
 
 function vsum() {
   for (let k = 0; k < horizontalImageOneComponents.length; k++) {
@@ -306,8 +306,8 @@ function vsum() {
 let topArray = [];
 let bottomArray = [];
 
-let findvbtn = document.querySelector(".findvbtn");
-findvbtn.addEventListener("click", findv);
+// let findvbtn = document.querySelector(".findvbtn");
+// findvbtn.addEventListener("click", findv);
 function findv() {
   for (let k = 0; k < listOfVerticalSum.length; k++) {
     let top = 0;
@@ -328,8 +328,8 @@ function findv() {
   }
 }
 
-let cutVbtn = document.querySelector(".cutvbtn");
-cutVbtn.addEventListener("click", cutvertical);
+// let cutVbtn = document.querySelector(".cutvbtn");
+// cutVbtn.addEventListener("click", cutvertical);
 
 let listOfVerticalCanvas = [];
 function cutvertical() {
@@ -417,3 +417,18 @@ playButton.addEventListener("click", function () {
     viewImage.appendChild(crops);
   }
 });
+
+function magic() {
+  grayscale();
+  blackWhite();
+  reshape();
+  hsum();
+  findh();
+  cuthorizontal();
+  vsum();
+  findv();
+  cutvertical();
+}
+
+let magicbtn = document.querySelector(".magic-btn");
+magicbtn.addEventListener("click", magic);
