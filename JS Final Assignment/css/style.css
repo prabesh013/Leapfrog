@@ -1,10 +1,19 @@
 body {
   background-color: #e4e3e3;
+  /* background-color: #84a9ac; */
   font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
+.header {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #1c1c1c;
 }
 
 h1 {
   text-align: center;
+  color: #ececec;
 }
 button {
   display: block;
