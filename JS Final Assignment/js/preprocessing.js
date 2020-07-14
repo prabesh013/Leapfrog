@@ -26,7 +26,7 @@ function blackWhite(newData) {
 
   for (let i = 0; i < newData.length; i += 4) {
     if (newData[i] > threshold) {
-      imageOneComponent[counter] = 255;
+      imageOneComponent[counter] = 1;
     } else {
       imageOneComponent[counter] = 0;
     }
@@ -85,8 +85,8 @@ function cuthorizontal(leftArray, rightArray) {
     let cropsContext = crops.getContext("2d");
 
     crops.width = x;
-    crops.height = 210;
-    cropsContext.drawImage(sourceimage, leftArray[i], 0, x, 210, 0, 0, x, 210);
+    crops.height = 140; //changes
+    cropsContext.drawImage(sourceimage, leftArray[i], 0, x, 140, 0, 0, x, 140);
     listOfHorizontalCanvas.push(crops); //important line
   }
   return listOfHorizontalCanvas;
@@ -102,7 +102,7 @@ function vsum(
   for (let k = 0; k < horizontalImageOneComponents.length; k++) {
     let vertical_sum = [];
     let vWidth = rightArray[k] - leftArray[k];
-    let vHeight = 210;
+    let vHeight = 140; //changes
     for (let i = 0; i < vHeight; i++) {
       let sum = 0;
       for (let j = 0; j < vWidth; j++) {
@@ -168,7 +168,30 @@ function resize(cv) {
     o.height = 28;
     oCon.fillStyle = "#000000";
     oCon.fillRect(0, 0, o.width, o.height);
-    oCon.drawImage(cv[i], 0, 0, cv[i].width, cv[i].height, 4, 4, 20, 20);
+
+    let w = cv[i].width;
+    let h = cv[i].height;
+
+    if (w > h) {
+      //&& w > 20
+      let scaleFactor = w / 20;
+      w = 20;
+      h = Math.round(h / scaleFactor);
+    } else if (h > w) {
+      //&& h > 20
+      let scaleFactor = h / 20;
+      h = 20;
+      w = Math.round(w / scaleFactor);
+    } else {
+      w = 20;
+      h = 20;
+    }
+    let left = Math.floor(4 + (20 - w) / 2);
+    // let right = 4 + (20 - w) / 2;
+    let top = Math.floor(4 + (20 - h) / 2);
+    // let bottom = 4 + (20 - h) / 2;
+
+    oCon.drawImage(cv[i], 0, 0, cv[i].width, cv[i].height, left, top, w, h);
     viewImage.appendChild(o);
     canvaslist.push(o);
   }

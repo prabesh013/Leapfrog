@@ -25,7 +25,7 @@ let playing = false;
 ctx.fillStyle = "#000000";
 ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 ctx.strokeStyle = "#ffffff";
-ctx.lineWidth = 14;
+ctx.lineWidth = 9;
 ctx.lineJoin = "round";
 
 //only when mouse is clicked in the canvas get current positions and drawing starts
