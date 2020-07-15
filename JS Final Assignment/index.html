@@ -11,19 +11,39 @@
       rel="stylesheet"
     />
     <script src="./js/weights.js"></script>
-    <title>JS final Assignment</title>
+    <title>JS Final Assignment</title>
   </head>
   <body>
     <div class="container">
       <div class="header">
         <h1>THE GREAT</h1>
         <h1>DRAWING GAME</h1>
+        <div class="navbar"></div>
       </div>
-      <div class="main">
-        <div class="expression"></div>
-        <div class="drawingArea">
-          <canvas id="drawing-sheet" height="140" width="280"></canvas>
-          <button class="clear-btn">Clear</button>
+      <div class="main clearfix">
+        <button class="how-to-play">Rules</button>
+        <div class="rules">
+          <h2>How To Play:</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+            minus reiciendis cumque suscipit laudantium reprehenderit quo porro
+            et neque? Beatae architecto earum est eos odit id nulla suscipit
+            eligendi magni.
+          </p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe,
+            vitae fuga? Itaque consequuntur molestias minus. Cum ut beatae
+            tempora nostrum quod deleniti, nam exercitationem, non laborum
+            assumenda laudantium saepe facere?
+          </p>
+          <button class="close"></button>
+        </div>
+        <div class="game">
+          <div class="expression"></div>
+          <div class="drawingArea">
+            <canvas id="drawing-sheet" height="140" width="280"></canvas>
+            <button class="clear-btn">Clear</button>
+          </div>
         </div>
         <div class="view-image">
           <button class="img-data-btn">Check Answer</button>

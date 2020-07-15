@@ -3,3 +3,9 @@
   margin: 0px;
   padding: 0px;
 }
+
+.clearfix:after {
+  clear: both;
+  display: table;
+  content: "";
+}
