@@ -200,8 +200,8 @@ function resize(cv) {
   return canvaslist;
 }
 
-const imgDataButton = document.querySelector(".img-data-btn");
-imgDataButton.addEventListener("click", func);
+const check = document.querySelector(".check-btn");
+check.addEventListener("click", func);
 
 function func() {
   let d = grayscale(canvas);

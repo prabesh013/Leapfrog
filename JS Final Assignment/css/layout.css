@@ -1,24 +1,54 @@
 .main {
-  width: 1000px;
-  height: 600px;
-  /* margin: auto; */
-  /* background-color: rosybrown; */
-  /* background-color: #84a9ac; */
-  padding: 20px 10px;
+  margin: auto;
+  padding: 10px;
+  height: 550px;
+  width: 1500px;
+  /* background-color: royalblue; */
+}
+.game {
+  width: 85%;
+  height: 100%;
+  padding: 10px;
+  /* background-color: red; */
+  float: left;
+}
+.score {
+  float: left;
+  width: 20%;
+  height: 100%;
+  padding: 10px;
+  /* background-color: green; */
+}
+.mainarea {
+  float: right;
+  width: 80%;
+  height: 100%;
+  padding: 10px;
+  /* background-color: grey; */
 }
 .expression {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  /* background-color: khaki; */
   text-align: center;
 }
-.expression p {
+
+/* .expression p {
   font-size: 35px;
-}
+} */
+
 .drawingArea {
-  width: 50%;
-  margin: 20px auto;
-  /* text-align: center; */
+  width: 100%;
+  height: calc(100% - 80px);
+  padding: 10px;
+  margin-top: 10px;
+  /* background-color: lightblue; */
 }
+
 #drawing-sheet {
   border: 5px solid #a4a4a4;
+  /* border: 5px solid #3700b3; */
   display: block;
   padding-left: 0;
   padding-right: 0;
@@ -26,14 +56,34 @@
   margin-right: auto;
   display: block;
 }
+
 .clear-btn {
-  margin: 10px auto;
+  margin: 15px 330px 20px auto;
   display: block;
+  width: 80px;
+  padding: 10px;
+  background-color: #c62828;
+  /* background-color: #3700b3; */
+}
+.check-btn {
+  margin: 0px auto;
+  display: block;
+  width: 130px;
+  padding: 10px;
+  background-color: #00897b;
+}
+.general-btn {
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
 }
 
-img {
-  display: none;
-}
-.view-image {
+.timer {
+  float: right;
+  width: 15%;
   height: 100%;
+  padding: 10px;
+  /* background-color: indigo; */
 }

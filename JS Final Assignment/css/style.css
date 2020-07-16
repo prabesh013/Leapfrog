@@ -1,28 +1,65 @@
 body {
-  background-color: #e4e3e3;
-  /* background-color: #84a9ac; */
-  font-family: "Roboto", sans-serif;
+  background: url(../img/backgroundblur.jpg) no-repeat center center fixed;
+  background-size: cover;
+  color: whitesmoke;
+  font-family: "Catamaran", sans-serif;
+  padding: 10px;
+}
+.header {
+  text-align: center;
+}
+.game-name {
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+
+.header .game-name h1 {
+  font-size: 70px;
+}
+
+.header .levels h2 {
+  font-size: 45px;
+  margin-bottom: 25px;
+  color: #ffc107;
+}
+
+.btn {
+  border: none;
+  width: 130px;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 30px;
+  font-size: larger;
+  color: white;
+  cursor: pointer;
   font-size: 20px;
 }
 
-.header {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  background-color: #1c1c1c;
+#easy {
+  background-color: #bb86fc;
+  /* background-color: #85ef47; */
 }
 
-h1 {
-  text-align: center;
-  color: #ececec;
+#medium {
+  background-color: #03dac5;
+  /* background-color: #f8b500; */
 }
-/* button {
-  display: block;
-} */
 
-.rules {
-  float: left;
-  max-width: 400px;
+#hard {
+  background-color: #3700b3;
+  /* background-color: #84142d; */
 }
-.game {
-  float: right;
+
+#easy:hover,
+#medium:hover,
+#hard:hover {
+  padding: 18px;
+  width: 160px;
+  border: 4px solid white;
+}
+.hide {
+  display: none;
+}
+span {
+  color: #303f9f;
 }

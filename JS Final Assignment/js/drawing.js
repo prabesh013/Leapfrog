@@ -1,10 +1,10 @@
 // Document Object Model Selector Constants
 //main elements from html
-const container = document.querySelector(".container");
-const main = document.querySelector(".main");
-const expressionArea = document.querySelector(".expression");
-const drawing = document.querySelector(".drawingArea");
-const viewImage = document.querySelector(".view-image");
+// const container = document.querySelector(".container");
+// const main = document.querySelector(".main");
+// const expressionArea = document.querySelector(".expression");
+// const drawing = document.querySelector(".drawingArea");
+// const viewImage = document.querySelector(".view-image");
 
 //referencing the canvas
 const canvas = document.querySelector("#drawing-sheet");
@@ -21,7 +21,8 @@ let previousY = 0;
 //until clicked n the canvas area, shouldn't draw anything even if mouse moves
 let playing = false;
 
-//basic styling for canvas
+// basic styling for canvas
+ctx.clearRect(0, 0, canvas.width, canvas.height);
 ctx.fillStyle = "#000000";
 ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 ctx.strokeStyle = "#ffffff";
@@ -59,10 +60,12 @@ function draw() {
   ctx.stroke();
 }
 //clears the canvas
-const button = document.querySelector(".clear-btn");
-button.addEventListener("click", function () {
+const clearBtn = document.querySelector(".clear-btn");
+clearBtn.addEventListener("click", clear);
+
+function clear() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#000000";
   ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
   playing = false;
-});
+}

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap"
       rel="stylesheet"
     />
     <script src="./js/weights.js"></script>
@@ -16,41 +16,34 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1>THE GREAT</h1>
-        <h1>DRAWING GAME</h1>
-        <div class="navbar"></div>
-      </div>
-      <div class="main clearfix">
-        <button class="how-to-play">Rules</button>
-        <div class="rules">
-          <h2>How To Play:</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-            minus reiciendis cumque suscipit laudantium reprehenderit quo porro
-            et neque? Beatae architecto earum est eos odit id nulla suscipit
-            eligendi magni.
-          </p>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe,
-            vitae fuga? Itaque consequuntur molestias minus. Cum ut beatae
-            tempora nostrum quod deleniti, nam exercitationem, non laborum
-            assumenda laudantium saepe facere?
-          </p>
-          <button class="close"></button>
+        <div class="game-name">
+          <h1>THE "<span>great</span>" DRAWING GAME</h1>
+          <!-- <p>A way to do arithmetics like never before!</p> -->
         </div>
-        <div class="game">
-          <div class="expression"></div>
-          <div class="drawingArea">
-            <canvas id="drawing-sheet" height="140" width="280"></canvas>
-            <button class="clear-btn">Clear</button>
+        <div class="levels">
+          <h2>CHOOSE LEVEL :</h2>
+          <button class="btn" id="easy">EASY</button>
+          <button class="btn" id="medium">MEDIUM</button>
+          <button class="btn" id="hard">HARD</button>
+        </div>
+      </div>
+      <div class="main clearfix hide">
+        <div class="game clearfix">
+          <div class="score"></div>
+          <div class="mainarea">
+            <div class="expression">EXPRESSION WILL BE HERE</div>
+            <div class="drawingArea">
+              <canvas id="drawing-sheet" height="140" width="280"></canvas>
+              <button class="clear-btn general-btn">Clear</button>
+              <button class="check-btn general-btn">CHECK</button>
+            </div>
           </div>
         </div>
-        <div class="view-image">
-          <button class="img-data-btn">Check Answer</button>
-        </div>
+        <div class="timer"></div>
       </div>
     </div>
     <script src="./js/drawing.js"></script>
     <script src="./js/preprocessing.js"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>
