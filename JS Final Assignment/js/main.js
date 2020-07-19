@@ -291,12 +291,14 @@ function checkAnswer() {
   ) {
     //stop program
     console.log("redraw");
-  }
-  for (let i = 0; i < arrayOfDigits.length; i++) {
-    if (arrayOfDigits[i] === recognizedNum[i]) {
-      scoredNum = scoredNum + 1;
+  } else {
+    for (let i = 0; i < arrayOfDigits.length; i++) {
+      if (arrayOfDigits[i] === recognizedNum[i]) {
+        scoredNum = scoredNum + 1;
+      }
     }
   }
+
   final = scoredNum;
   totalScore.innerText = `${scoredNum}`;
   nextQuestion(buttonPressed);
