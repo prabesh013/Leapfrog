@@ -23,6 +23,12 @@ body {
   color: #ffc107;
 }
 
+.expression-area {
+  text-align: center;
+  font-size: 22px;
+  /* margin-top: 10px; */
+  margin-bottom: 10px;
+}
 .btn {
   border: none;
   width: 130px;
@@ -62,4 +68,73 @@ body {
 }
 span {
   color: #303f9f;
+}
+.score-card,
+.timer-card {
+  position: absolute;
+}
+.score-card {
+  top: 130px;
+  text-align: center;
+  width: 100%;
+}
+.timer-card {
+  text-align: center;
+  top: 113px;
+  left: 40px;
+}
+.score-card h2,
+.timer-card h2 {
+  font-size: 30px;
+}
+
+.timer-card p {
+  display: inline-block;
+  font-size: 30px;
+  position: absolute;
+  top: 44%;
+  left: 44%;
+}
+.endScreen {
+  text-align: center;
+  font-size: 35px;
+}
+.help {
+  margin-top: 25px;
+}
+.helpBtn,
+#home,
+#close {
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  background-color: transparent;
+  margin-top: 15px;
+}
+.helpBtn:hover,
+#home:hover,
+#close:hover {
+  color: green;
+}
+
+.rules {
+  width: 99%;
+  height: 500px;
+  text-align: center;
+  padding: 20px;
+  color: orange;
+  background-color: black;
+  position: absolute;
+  transform: translateX(-1600px);
+  transition: transform 1s ease-in-out;
+  font-size: 20px;
+}
+.show {
+  transform: translateX(0px);
+}
+.container {
+  /* position: relative; */
+}
+#caution {
+  color: maroon;
 }
