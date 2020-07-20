@@ -1,11 +1,18 @@
+//converts the image into grayscale
 function grayscale(newCanvas) {
   let newCtx = newCanvas.getContext("2d");
-  let imageGrayScaleData = newCtx.getImageData(
-    0,
-    0,
-    newCanvas.width,
-    newCanvas.height
-  );
+  let imageGrayScaleData = null;
+  try {
+    imageGrayScaleData = newCtx.getImageData(
+      0,
+      0,
+      newCanvas.width,
+      newCanvas.height
+    );
+  } catch (err) {
+    return null;
+  }
+
   let newData = imageGrayScaleData.data;
 
   for (let i = 0; i < newData.length; i += 4) {
@@ -16,10 +23,10 @@ function grayscale(newCanvas) {
     newData[i + 1] = avg; // green
     newData[i + 2] = avg; // blue
   }
-  // console.log("new-data", newData)
   return newData;
 }
 
+//converts the image into black and white into single component
 function blackWhite(newData) {
   let imageOneComponent = [];
   const threshold = 128;
@@ -33,10 +40,10 @@ function blackWhite(newData) {
     }
     counter++;
   }
-  // console.log("image", imageOneComponent)
   return imageOneComponent;
 }
 
+//reduces the size of the image from 4D to 1D (RGBA to one threshold)
 function reshape(imageW, imageH, imageOneComponent) {
   let reshapeImage = [];
   let offset = 0;
@@ -51,6 +58,7 @@ function reshape(imageW, imageH, imageOneComponent) {
   return reshapeImage;
 }
 
+//calculates the image horizontal sum (like horizontal histogram projection)
 function hsum(imageW, imageH, reshapeImage) {
   let horizontal_sum = [];
   for (let i = 0; i < imageW; i++) {
@@ -63,6 +71,7 @@ function hsum(imageW, imageH, reshapeImage) {
   return horizontal_sum;
 }
 
+//finds the location of every character horizontally
 function findh(imageW, horizontal_sum, leftArray, rightArray) {
   let left = 0;
   let right = 0;
@@ -77,7 +86,7 @@ function findh(imageW, horizontal_sum, leftArray, rightArray) {
     }
   }
 }
-
+//extracting every character horizontally
 function cuthorizontal(leftArray, rightArray) {
   let sourceimage = canvas;
   let listOfHorizontalCanvas = [];
@@ -94,6 +103,7 @@ function cuthorizontal(leftArray, rightArray) {
   return listOfHorizontalCanvas;
 }
 
+//calculates the image horizontal sum (like vertical histogram projection)
 function vsum(
   leftArray,
   rightArray,
@@ -117,6 +127,7 @@ function vsum(
   return listOfVerticalSum;
 }
 
+//finds the location of every character vertically after horizontal cut
 function findv(imageH, listOfVerticalSum, topArray, bottomArray) {
   for (let k = 0; k < listOfVerticalSum.length; k++) {
     let top = 0;
@@ -134,7 +145,7 @@ function findv(imageH, listOfVerticalSum, topArray, bottomArray) {
     }
   }
 }
-
+//extracting every character vertically
 function cutvertical(leftArray, rightArray, topArray, bottomArray) {
   let listOfVerticalCanvas = [];
   let sourceimage = canvas;
@@ -161,6 +172,8 @@ function cutvertical(leftArray, rightArray, topArray, bottomArray) {
   }
   return listOfVerticalCanvas;
 }
+//resizing into 28*28, adding padding to the image to center it
+//the canvas returned will be 28 * 28 (like a tensor)
 function resize(cv) {
   let canvaslist = [];
   for (i = 0; i < cv.length; i++) {
@@ -175,12 +188,10 @@ function resize(cv) {
     let h = cv[i].height;
 
     if (w > h) {
-      //&& w > 20
       let scaleFactor = w / 18;
       w = 18;
       h = Math.round(h / scaleFactor);
     } else if (h > w) {
-      //&& h > 20
       let scaleFactor = h / 18;
       h = 18;
       w = Math.round(w / scaleFactor);
@@ -189,12 +200,13 @@ function resize(cv) {
       h = 18;
     }
     let left = Math.floor(5 + (18 - w) / 2);
-    // let right = 4 + (20 - w) / 2;
     let top = Math.floor(5 + (18 - h) / 2);
-    // let bottom = 4 + (20 - h) / 2;
 
-    oCon.drawImage(cv[i], 0, 0, cv[i].width, cv[i].height, left, top, w, h);
-    // viewImage.appendChild(o);
+    try {
+      oCon.drawImage(cv[i], 0, 0, cv[i].width, cv[i].height, left, top, w, h);
+    } catch (er) {
+      return null;
+    }
     canvaslist.push(o);
   }
   return canvaslist;

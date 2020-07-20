@@ -43,7 +43,51 @@ let close = document.querySelector("#close");
 close.addEventListener("click", function () {
   rules.classList.remove("show");
 });
+let intervalId = null;
+let countDown = document.querySelector("#countdown");
 
+const check = document.querySelector(".check-btn");
+check.addEventListener("click", checkAnswer);
+
+let final = 0;
+let scoredNum = 0;
+
+class Timer {
+  constructor(totalTime) {
+    this.totalTime = totalTime;
+    this.timeInSec = totalTime / 1000;
+
+    this.timeValue = -Math.round(perimeter / this.timeInSec);
+    this.time = totalTime / perimeter;
+    this.value = -perimeter;
+    this.start();
+    this.increment = -perimeter;
+  }
+  start = () => {
+    this.tick();
+    this.increment--;
+    countDown.innerText = `${this.timeInSec}`;
+    this.interval = setInterval(this.tick, this.time);
+    intervalId = this.interval;
+  };
+  tick = () => {
+    timeCircle.setAttribute("stroke-dashoffset", this.value);
+
+    this.value = this.value - 1;
+    this.increment--;
+    if (this.value < 2 * -perimeter) {
+      clearInterval(this.interval);
+      gameOver();
+    }
+    if (this.increment === this.timeValue - perimeter) {
+      this.timeInSec = this.timeInSec - 1;
+      countDown.innerText = `${this.timeInSec}`;
+      this.increment = -perimeter;
+    }
+  };
+}
+
+//generate easy expression
 function generateEasyExp(operator) {
   let first = null;
   let second = null;
@@ -69,7 +113,7 @@ function generateEasyExp(operator) {
     return [expression, answer];
   }
 }
-
+//generate medium expression
 function generateMediumExp(number) {
   let first = null;
   let second = null;
@@ -115,7 +159,7 @@ function generateMediumExp(number) {
     return [expression, answer];
   }
 }
-
+//generate hard expression
 function generateHardExp(number) {
   let first = null;
   let second = null;
@@ -225,49 +269,13 @@ function hard() {
   computedAnswer = expWithAns[1];
 }
 
-let intervalId = null;
-let countDown = document.querySelector("#countdown");
-
-class Timer {
-  constructor(totalTime) {
-    this.totalTime = totalTime;
-    this.timeInSec = totalTime / 1000;
-
-    this.timeValue = -Math.round(perimeter / this.timeInSec);
-    this.time = totalTime / perimeter;
-    this.value = -perimeter;
-    this.start();
-    this.increment = -perimeter;
-  }
-  start = () => {
-    this.tick();
-    this.increment--;
-    countDown.innerText = `${this.timeInSec}`;
-    this.interval = setInterval(this.tick, this.time);
-    intervalId = this.interval;
-  };
-  tick = () => {
-    timeCircle.setAttribute("stroke-dashoffset", this.value);
-
-    this.value = this.value - 1;
-    this.increment--;
-    if (this.value < 2 * -perimeter) {
-      clearInterval(this.interval);
-      gameOver();
-    }
-    if (this.increment === this.timeValue - perimeter) {
-      this.timeInSec = this.timeInSec - 1;
-      countDown.innerText = `${this.timeInSec}`;
-      this.increment = -perimeter;
-    }
-  };
-}
-
+//after clicking next question will come
 function nextQuestion(btnPress) {
   clearExp();
   clearInterval(intervalId);
   btnPress();
 }
+//add the generated expression in the DOM
 function addExpression(expression) {
   let hTwo = document.createElement("h2");
   // let text = document.createTextNode(expression);
@@ -277,13 +285,72 @@ function addExpression(expression) {
   expressionArea.appendChild(hTwo);
 }
 
-const check = document.querySelector(".check-btn");
-check.addEventListener("click", checkAnswer);
+//main logic here
+function digitrecognize() {
+  let d = grayscale(canvas);
+  if (d === null) {
+    console.log("here2");
+    return null;
+  }
+  let b = blackWhite(d);
+  let r = reshape(canvas.width, canvas.height, b);
+  let hs = hsum(canvas.width, canvas.height, r);
 
-let final = 0;
-let scoredNum = 0;
+  let leftArray = []; //change this
+  let rightArray = []; //change this
+
+  findh(canvas.width, hs, leftArray, rightArray);
+  let hCanvasList = cuthorizontal(leftArray, rightArray);
+  let horizontalImageOneComponents = [];
+  let reshapeHorizontalCuts = [];
+  for (let k = 0; k < hCanvasList.length; k++) {
+    let tempCanvas = hCanvasList[k];
+    let gr = grayscale(tempCanvas);
+    if (gr === null) {
+      return null;
+    }
+    let bw = blackWhite(gr);
+
+    horizontalImageOneComponents.push(bw);
+
+    let rh = reshape(rightArray[k] - leftArray[k], canvas.height, bw);
+    reshapeHorizontalCuts.push(rh);
+  }
+  let vs = vsum(
+    leftArray,
+    rightArray,
+    horizontalImageOneComponents,
+    reshapeHorizontalCuts
+  );
+  let topArray = [];
+  let bottomArray = [];
+  findv(canvas.height, vs, topArray, bottomArray);
+  let cv = cutvertical(leftArray, rightArray, topArray, bottomArray);
+  let cList = resize(cv);
+  if (cList === null) {
+    return null;
+  }
+  console.log(cList);
+  let oneCompFinalCanvas = [];
+  let ans = null;
+  for (let i = 0; i < cList.length; i++) {
+    let grey = grayscale(cList[i]);
+    console.log("in loop");
+    let black = blackWhite(grey);
+    ans = logic(black);
+    oneCompFinalCanvas.push(ans);
+  }
+  return oneCompFinalCanvas;
+}
+
+//check answer
 function checkAnswer() {
   let recognizedNum = digitrecognize();
+  if (recognizedNum === null) {
+    console.log("here3");
+    clear();
+    return;
+  }
   let arrayOfDigits = Array.from(String(computedAnswer), Number);
   if (
     recognizedNum.length != arrayOfDigits.length ||
@@ -304,52 +371,7 @@ function checkAnswer() {
   nextQuestion(buttonPressed);
 }
 
-function digitrecognize() {
-  let d = grayscale(canvas);
-  let b = blackWhite(d);
-  let r = reshape(canvas.width, canvas.height, b);
-  let hs = hsum(canvas.width, canvas.height, r);
-
-  let leftArray = []; //change this
-  let rightArray = []; //change this
-
-  findh(canvas.width, hs, leftArray, rightArray);
-  let hCanvasList = cuthorizontal(leftArray, rightArray);
-  let horizontalImageOneComponents = [];
-  let reshapeHorizontalCuts = [];
-  for (let k = 0; k < hCanvasList.length; k++) {
-    let tempCanvas = hCanvasList[k];
-    let gr = grayscale(tempCanvas);
-    let bw = blackWhite(gr);
-
-    horizontalImageOneComponents.push(bw);
-
-    let rh = reshape(rightArray[k] - leftArray[k], canvas.height, bw);
-    reshapeHorizontalCuts.push(rh);
-  }
-  let vs = vsum(
-    leftArray,
-    rightArray,
-    horizontalImageOneComponents,
-    reshapeHorizontalCuts
-  );
-  let topArray = [];
-  let bottomArray = [];
-  findv(canvas.height, vs, topArray, bottomArray);
-  let cv = cutvertical(leftArray, rightArray, topArray, bottomArray);
-  let cList = resize(cv);
-  console.log(cList);
-  let oneCompFinalCanvas = [];
-  let ans = null;
-  for (let i = 0; i < cList.length; i++) {
-    let grey = grayscale(cList[i]);
-    let black = blackWhite(grey);
-    ans = logic(black);
-    oneCompFinalCanvas.push(ans);
-  }
-  return oneCompFinalCanvas;
-}
-
+//clear everything after time is up
 function gameOver() {
   levels.classList.add("hide");
   help.classList.add("hide");
@@ -358,6 +380,7 @@ function gameOver() {
   finalScore.innerText = `${final}`;
 }
 
+//after game ends reset everything and go to main page
 function mainMenu() {
   final = 0;
   scoredNum = 0;
@@ -371,9 +394,9 @@ function mainMenu() {
   help.classList.remove("hide");
   gameName.style.marginTop = "150px";
   gameName.style.marginBottom = "50px";
-  // main.classList.("hide");
   endScreen.classList.add("hide");
 }
+//clears the expression in the DOM
 function clearExp() {
   let exp = document.querySelector(".expression-area h2");
   if (exp !== null || exp !== undefined) {

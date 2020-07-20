@@ -1,16 +1,8 @@
-// Document Object Model Selector Constants
-//main elements from html
-// const container = document.querySelector(".container");
-// const main = document.querySelector(".main");
-// const expressionArea = document.querySelector(".expression");
-// const drawing = document.querySelector(".drawingArea");
-// const viewImage = document.querySelector(".view-image");
-
 //referencing the canvas
 const canvas = document.querySelector("#drawing-sheet");
 const ctx = canvas.getContext("2d");
 
-//drawing Logic
+//Drawing Logic
 
 //initial position
 let currentX = 0;
@@ -52,6 +44,7 @@ canvas.addEventListener("mousemove", function (e) {
   }
 });
 
+//function to draw in the canvas
 function draw() {
   ctx.beginPath();
   ctx.moveTo(previousX, previousY);
@@ -59,10 +52,12 @@ function draw() {
   ctx.closePath();
   ctx.stroke();
 }
+
 //clears the canvas
 const clearBtn = document.querySelector(".clear-btn");
 clearBtn.addEventListener("click", clear);
 
+//clears the canvas
 function clear() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#000000";
