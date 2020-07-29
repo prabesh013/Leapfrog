@@ -2,10 +2,10 @@ function logic(imageOneComponent) {
   // append 1 at begining for coefficient -> new size = 785
   // this is done
   // var imageFromCanvasWithX0 = [1, ...imageFromCanvas];
-  var imageFromCanvasWithX0 = [1, ...imageOneComponent];
+  let imageFromCanvasWithX0 = [1, ...imageOneComponent];
 
   // each key 0..9 has array of 785 numbers (weights)
-  var weightsMap = {
+  let weightsMap = {
     0: [
       -1.5623072028182685,
       0.0,
@@ -7888,9 +7888,11 @@ function logic(imageOneComponent) {
       // xi * mi <- add to get dot product
       val = val + imageFromCanvasWithX0[i] * weightsMap[imgClass][i];
     }
-    values.push(val);
+    // values.push(val);
+    let sigmoid = 1 / (1 + Math.pow(2.718, -val));
+    values.push(sigmoid);
   }
-  // console.log(values);
+  console.log(values);
 
   // Class is that with highest number
   console.log("Class Predicted: ", values.indexOf(Math.max(...values)));

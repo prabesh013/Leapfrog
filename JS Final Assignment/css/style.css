@@ -121,7 +121,7 @@ span {
   color: orange;
   background-color: black;
   position: absolute;
-  transform: translateX(-1600px);
+  transform: translateX(-5500px);
   transition: transform 1s ease-in-out;
   font-size: 20px;
 }
@@ -130,4 +130,7 @@ span {
 }
 #caution {
   color: maroon;
+}
+li {
+  list-style: none;
 }
